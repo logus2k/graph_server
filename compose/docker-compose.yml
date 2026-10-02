@@ -1,11 +1,11 @@
-# graph_server PoC — ISOLATED ArcadeDB (latest 26.7.2) for evaluating native
+# graph_server PoC — ISOLATED ArcadeDB (26.9.1 since 2026-10-02; was 26.7.2) for evaluating native
 # dense+sparse hybrid vector search vs the current Chroma dense + bge-m3 rerank
 # stack. Fully self-contained: own container name, host port 2490 (live
 # noted-arcadedb keeps 2480), own named volume. Touches nothing in the running
 # bulario ingestion. Config mirrors the proven noted-arcadedb (ZGC, 2G heap).
 services:
   arcadedb:
-    image: arcadedata/arcadedb:26.7.2
+    image: arcadedata/arcadedb:26.9.1
     container_name: graph-server-arcadedb
     environment:
       JAVA_OPTS: >-
@@ -15,9 +15,28 @@ services:
       ARCADEDB_OPTS_MEMORY: "-Xms2G -Xmx6G"
     ports:
       - "2490:2480"      # HTTP API + Studio (live instance owns 2480)
+    # Every ArcadeDB folder on a NAMED volume: config holds server-users.jsonl (the root password) - an anonymous
+    # volume there is discarded by `docker compose down`.
     volumes:
       - graph_server_data:/home/arcadedb/databases
+      - graph_server_config:/home/arcadedb/config
+      - graph_server_backups:/home/arcadedb/backups
+      - graph_server_log:/home/arcadedb/log
+      - graph_server_replication:/home/arcadedb/replication
+    networks:
+      - default
+      - noted-network    # where its clients reach it (Cortex, ingestion-server, cv, job2cool, devaikb, agent_runtime)
+    # time to close the databases cleanly (stopped in Docker's default 10 s, every database replayed its log at start)
+    stop_grace_period: 2m
     restart: unless-stopped
 
 volumes:
   graph_server_data:
+  graph_server_config:
+  graph_server_backups:
+  graph_server_log:
+  graph_server_replication:
+
+networks:
+  noted-network:
+    external: true
