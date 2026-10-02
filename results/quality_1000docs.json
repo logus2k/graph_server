@@ -1,0 +1,143 @@
+{
+  "summary": {
+    "corpus": 999,
+    "gold_cases": 18,
+    "k": 10,
+    "current_flow_chroma_rerank": {
+      "recall_at_k_pct": 88.9,
+      "mrr": 0.861
+    },
+    "arcade_dense_no_rerank": {
+      "recall_at_k_pct": 83.3,
+      "mrr": 0.659
+    }
+  },
+  "per_case": [
+    {
+      "id": "dose_max",
+      "drug": "aripiprazol",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "dose_inicial_esquizo",
+      "drug": "aripiprazol",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "via_admin",
+      "drug": "aripiprazol",
+      "cat": "I",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "partir_mastigar",
+      "drug": "aripiprazol",
+      "cat": "I",
+      "rank_current": 2,
+      "rank_arcade": 2
+    },
+    {
+      "id": "armazenamento",
+      "drug": "aripiprazol",
+      "cat": "J",
+      "rank_current": 1,
+      "rank_arcade": 10
+    },
+    {
+      "id": "esquecimento",
+      "drug": "aripiprazol",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "reacoes_comuns",
+      "drug": "aripiprazol",
+      "cat": "G",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "indicacao",
+      "drug": "aripiprazol",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 9
+    },
+    {
+      "id": "contraindicacao",
+      "drug": "aripiprazol",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "ariscorten_via",
+      "drug": "ariscorten",
+      "cat": "I",
+      "rank_current": 0,
+      "rank_arcade": 1
+    },
+    {
+      "id": "ariscorten_ativo",
+      "drug": "ariscorten",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 0
+    },
+    {
+      "id": "ariscorten_pediatrico",
+      "drug": "ariscorten",
+      "cat": "F",
+      "rank_current": 0,
+      "rank_arcade": 0
+    },
+    {
+      "id": "amox_indicacao",
+      "drug": "amoxicilina",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "amox_via",
+      "drug": "amoxicilina",
+      "cat": "I",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "amox_armazenamento",
+      "drug": "amoxicilina",
+      "cat": "J",
+      "rank_current": 1,
+      "rank_arcade": 0
+    },
+    {
+      "id": "aciclovir_indicacao",
+      "drug": "aciclovir",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 7
+    },
+    {
+      "id": "aciclovir_contra",
+      "drug": "aciclovir",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    },
+    {
+      "id": "azitro_indicacao",
+      "drug": "azitromicina",
+      "cat": "A",
+      "rank_current": 1,
+      "rank_arcade": 1
+    }
+  ]
+}

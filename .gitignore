@@ -1,0 +1,15 @@
+# Python environment (6 GB; rebuild from harness/requirements.txt) and build leftovers
+.venv/
+__pycache__/
+*.pyc
+
+# secrets (ArcadeDB root password, tokens)
+.env
+
+# data, not code: corpus exports, embedding snapshots and entity embeddings (hundreds of MB, regenerable by the
+# harness scripts: export_corpus.py, export_entities.py, attach_entity_emb.py)
+exports/
+harness/snapshot/
+harness/snapshot_ftn/
+harness/ent_bulario/
+harness/ent_bulario_ref/

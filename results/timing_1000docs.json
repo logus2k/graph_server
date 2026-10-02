@@ -1,0 +1,19 @@
+{
+  "gpu": "idle (0% util) during measurement",
+  "queries": 18,
+  "warmup": true,
+  "components_ms": {
+    "embed_p50": 11,
+    "arcade_search_p50": 3.7,
+    "chroma_search_p50": 2.3,
+    "rerank20_p50": 114.8,
+    "rerank20_p95": 278.8
+  },
+  "end_to_end_ms": {
+    "arcade_e2e_p50": 130.1,
+    "arcade_e2e_p95": 294.9,
+    "chroma_e2e_p50": 115.4,
+    "chroma_e2e_p95": 3008.2
+  },
+  "takeaway": "Reranker ~88% of latency; vector store ~3% (store choice latency-irrelevant). e2e wash at p50. ArcadeDB explicit rerank-20 path had tighter tail (p95 295ms) vs /search 3008ms spike (larger internal candidate set / model reload)."
+}

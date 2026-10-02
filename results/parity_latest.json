@@ -1,0 +1,10 @@
+{
+  "sample": 500,
+  "k": 10,
+  "corpus": 67628,
+  "arcadedb": {
+    "ann_recall_vs_exact_pct": 92.84,
+    "latency_ms_p50": 6.3,
+    "latency_ms_p95": 10.9
+  }
+}

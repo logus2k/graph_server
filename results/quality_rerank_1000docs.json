@@ -1,0 +1,19 @@
+{
+  "corpus": 67628,
+  "gold_cases": 18,
+  "k": 10,
+  "candidates_before_rerank": 20,
+  "chroma_dense_plus_rerank_current": {
+    "recall_at_k_pct": 88.9,
+    "mrr": 0.861
+  },
+  "arcade_dense_no_rerank": {
+    "recall_at_k_pct": 83.3,
+    "mrr": 0.659
+  },
+  "arcade_dense_plus_rerank": {
+    "recall_at_k_pct": 94.4,
+    "mrr": 0.679
+  },
+  "takeaway": "Reranker is store-agnostic. ArcadeDB dense + same bge-reranker matches/exceeds Chroma+rerank recall. Store choice is not the quality driver; reranker + candidate depth are. Small sample (18) - directional."
+}

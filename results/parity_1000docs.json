@@ -1,0 +1,17 @@
+{
+  "corpus": 67628,
+  "docs": 999,
+  "sample": 500,
+  "k": 10,
+  "arcadedb": {
+    "ann_recall_vs_exact_pct": 92.84,
+    "latency_ms_p50": 6.3,
+    "latency_ms_p95": 10.9
+  },
+  "chroma": {
+    "ann_recall_vs_exact_pct": 94.6,
+    "latency_ms_p50": 2.3,
+    "latency_ms_p95": 3.1
+  },
+  "note": "At 67K Chroma edges ArcadeDB on recall+latency (flip from 28K where ArcadeDB led). Both >92%, single-digit ms; reranker dominates end-to-end. ArcadeDB JVector default params untuned."
+}

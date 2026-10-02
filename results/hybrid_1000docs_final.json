@@ -1,0 +1,18 @@
+{
+  "corpus": 67628,
+  "docs": 999,
+  "gold_cases": 18,
+  "dense": {
+    "recall_pct": 94.4,
+    "lat_ms": 5.6
+  },
+  "sparse": {
+    "recall_pct": 100.0,
+    "lat_ms": 6.7
+  },
+  "hybrid_fuse": {
+    "recall_pct": 100.0,
+    "lat_ms": 8.6
+  },
+  "note": "Native ArcadeDB hybrid (dense+sparse RRF) = 100% vs dense-only 94.4% on drug-name-centric gold cases; single-digit ms. Sparse catches keyword hits (e.g. Ariscorten) dense missed. Small sample (18), keyword-favorable. rerank column in raw bench looked unreliable (raw==rerank) - not reported."
+}

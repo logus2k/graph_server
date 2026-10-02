@@ -1,0 +1,12 @@
+{
+  "question": "root cause of 100ms->3s /search spike",
+  "steady_state_ms": 113,
+  "cold_start_ms": 306,
+  "spike_ms": 2100,
+  "breakdown_warm": {
+    "embed_ms": 20,
+    "chroma_query_ms": 2.8,
+    "rerank_ms": 83
+  },
+  "root_cause": "Three effects, none store-related: (1) steady state ~113ms; (2) cold-start one-time ~250ms (cold HNSW segment + reranker warmup); (3) 2100ms spike = CONTENTION on shared --parallel-2 llama-server when embed/rerank/gemma overlap (benchmark fired 4 GPU calls/query). Fix = more parallel slots or dedicated rerank instance. Independent of Chroma vs ArcadeDB."
+}

@@ -1,0 +1,23 @@
+# graph_server PoC — ISOLATED ArcadeDB (latest 26.7.2) for evaluating native
+# dense+sparse hybrid vector search vs the current Chroma dense + bge-m3 rerank
+# stack. Fully self-contained: own container name, host port 2490 (live
+# noted-arcadedb keeps 2480), own named volume. Touches nothing in the running
+# bulario ingestion. Config mirrors the proven noted-arcadedb (ZGC, 2G heap).
+services:
+  arcadedb:
+    image: arcadedata/arcadedb:26.7.2
+    container_name: graph-server-arcadedb
+    environment:
+      JAVA_OPTS: >-
+        -XX:+UseZGC -XX:+ZGenerational
+        -Darcadedb.server.rootPassword=${ARCADEDB_PW:?set ARCADEDB_PW in compose/.env}
+        -Darcadedb.server.defaultDatabases=poc[root]
+      ARCADEDB_OPTS_MEMORY: "-Xms2G -Xmx6G"
+    ports:
+      - "2490:2480"      # HTTP API + Studio (live instance owns 2480)
+    volumes:
+      - graph_server_data:/home/arcadedb/databases
+    restart: unless-stopped
+
+volumes:
+  graph_server_data:
