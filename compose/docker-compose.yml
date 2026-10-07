@@ -25,7 +25,7 @@ services:
       - graph_server_replication:/home/arcadedb/replication
     networks:
       - default
-      - noted-network    # where its clients reach it (Cortex, ingestion-server, cv, job2cool, devaikb, agent_runtime)
+      - cortex-kb        # where its clients reach it (Cortex, ingestion-server; other apps: docker-compose.local.yml)
     # time to close the databases cleanly (stopped in Docker's default 10 s, every database replayed its log at start)
     stop_grace_period: 2m
     restart: unless-stopped
@@ -38,5 +38,5 @@ volumes:
   graph_server_replication:
 
 networks:
-  noted-network:
+  cortex-kb:
     external: true

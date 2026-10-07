@@ -14,3 +14,7 @@ harness/snapshot_ftn/
 harness/ent_bulario/
 harness/ent_bulario_ref/
 backups/
+
+# this machine only: its compose override and settings (never committed)
+docker-compose.local.yml
+.env
