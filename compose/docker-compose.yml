@@ -12,11 +12,16 @@ services:
         -XX:+UseZGC -XX:+ZGenerational
         -Darcadedb.server.rootPassword=${ARCADEDB_PW:?set ARCADEDB_PW in compose/.env}
         -Darcadedb.server.defaultDatabases=poc[root]
+        -Darcadedb.server.restoreImportAllowLocalUrls=true
       ARCADEDB_OPTS_MEMORY: "-Xms2G -Xmx6G"
     ports:
       - "2490:2480"      # HTTP API + Studio (live instance owns 2480)
     # Every ArcadeDB folder on a NAMED volume: config holds server-users.jsonl (the root password) - an anonymous
-    # volume there is discarded by `docker compose down`.
+    # volume there is discarded by `docker compose down`. restoreImportAllowLocalUrls: `restore database <name>
+    # file:///home/arcadedb/backups/...` - Cortex imports a domain from its backups folder (cortex/kbase/transfer.py);
+    # only the root user (Cortex) restores, and ArcadeDB refuses local files and private hosts without it. Where Cortex
+    # exports and imports domains, the backups folder is a host folder Cortex shares (deploy/overrides/graph_server.yml,
+    # this machine: docker-compose.local.yml).
     volumes:
       - graph_server_data:/home/arcadedb/databases
       - graph_server_config:/home/arcadedb/config
