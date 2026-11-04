@@ -1,17 +1,17 @@
-# graph_server PoC — ISOLATED ArcadeDB (26.9.1 since 2026-10-02; was 26.7.2) for evaluating native
-# dense+sparse hybrid vector search vs the current Chroma dense + bge-m3 rerank
-# stack. Fully self-contained: own container name, host port 2490 (live
-# noted-arcadedb keeps 2480), own named volume. Touches nothing in the running
-# bulario ingestion. Config mirrors the proven noted-arcadedb (ZGC, 2G heap).
+# Cortex's knowledge-base ArcadeDB: ONE database per Cortex domain, and nothing else (the user, 2026-11-04: "the ArcadeDB
+# instance and volume used by Cortex should have only Cortex domain databases" - the other applications' databases
+# moved to ~/env/assets/apps_arcadedb). Clients: Cortex, ingestion-server (writes Cortex's PDF passages) and devaikb
+# (reads bancoctt). 26.10.2 since 2026-11-04: its sparse-vector tombstones remove one posting, not the whole record
+# (Cortex register #320); 26.9.1 since 2026-10-02; was 26.7.2. Born as an isolated PoC for native dense+sparse
+# hybrid search (host port 2490; the noted stack's own ArcadeDB keeps 2480). ZGC, 2G-6G heap.
 services:
   arcadedb:
-    image: arcadedata/arcadedb:26.9.1
+    image: arcadedata/arcadedb:26.10.2
     container_name: graph-server-arcadedb
     environment:
       JAVA_OPTS: >-
         -XX:+UseZGC -XX:+ZGenerational
         -Darcadedb.server.rootPassword=${ARCADEDB_PW:?set ARCADEDB_PW in compose/.env}
-        -Darcadedb.server.defaultDatabases=poc[root]
         -Darcadedb.server.restoreImportAllowLocalUrls=true
       ARCADEDB_OPTS_MEMORY: "-Xms2G -Xmx6G"
     ports:
